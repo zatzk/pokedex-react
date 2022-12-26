@@ -1,29 +1,28 @@
-import { Card, CardHeader, CardBody, CardFooter, Image, Box, Text } from '@chakra-ui/react'
+import { Card, CardHeader, CardFooter, CardBody, Image, Box, Text } from '@chakra-ui/react'
 
-export default function PokemonCard({ name, image, types }) {
-  const typeHandler = () => {
-    if (types[1]) {
-      return types[0].type.name + " | " + types[1].type.name;
-    }
-    return types[0].type.name;
-  };
+export default function PokemonCard({ name, image, types, id }) {
+ 
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardHeader>
+    <Card sx={{ maxWidth: 345}}>
+      <CardHeader >
         <Box display="flex" justifyContent="space-between" alignItems="center">
-          <Text  >
+          <Text fontSize="1.5em" fontFamily="fonts.primary" fontWeight="700" ml="10px">
             {name}
           </Text>
-          <Text>
-            {typeHandler()}
+          <Text fontSize="16px" fontFamily="fonts.primary" fontWeight="600" mr="10px">
+            #{id}
           </Text>
         </Box>
       </CardHeader>
-      <CardBody>
-        <Image height="200" src={image} alt='green iguana'  />
+      <CardBody display="flex" alignContent="center" justifyContent="center">
+        <Image position="relative"  height="200" src={image} alt={`${name}`}  />
       </CardBody>
-      
+      <CardFooter>
+        <Text fontSize="12px"  >
+          {types[0].type.name}
+        </Text>
+      </CardFooter>
     </Card>
   );
 }

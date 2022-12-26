@@ -45,19 +45,24 @@ export const App = () => {
     <ChakraProvider theme={theme}>
     <Box>
       <Navbar pokemonFilter={pokemonFilter} />
-      <Container>
-        <Grid gap={3}>
+      <Box>
+        <SimpleGrid columns={[1, 2, 3, 4]} gap={3}>
           {pokemons.length === 0 ? (
-            <Skeletons />
-          ) : (
-            pokemons.map((pokemon, key) => (
-              <SimpleGrid column={[1, 2, 3]}  key={key}>
-                <PokemonCard name={pokemon.data.name} image={pokemon.data.sprites.front_default} types={pokemon.data.types} />
-              </SimpleGrid>
+              <Skeletons />
+              ) : (
+                pokemons.map((pokemon, key) => (
+                  <Box key={key}>
+                <PokemonCard 
+                  name={pokemon.data.name}
+                  image={pokemon.data.sprites.other.home.front_default}
+                  types={pokemon.data.types} 
+                  id={pokemon.data.id}
+                  />
+              </Box>
             ))
-          )}
-        </Grid>
-      </Container>
+            )}
+            </SimpleGrid>
+      </Box>
     </Box>
   </ChakraProvider>
   )
